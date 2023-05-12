@@ -1,0 +1,13 @@
+
+header{
+    background-color:#3e9aa6;
+    margin:0;
+}
+header div{
+text-align: center;
+padding:20px;
+}
+header h1{
+    color:white;
+    font-size:20px;
+}
