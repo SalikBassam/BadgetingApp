@@ -3,17 +3,19 @@ import { Header, Footer } from './Layouts';
 import { StatisticsPage, TransactionForm, TransactionList } from './Components';
 
 function App() {
-  const [amount, setAmount] = useState(0);
+  // State variables to track the app's data
   const [currentBalance, setCurrentBalance] = useState(0);
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
   const [transactions, setTransactions] = useState([]);
 
+  // Event handler for adding a new transaction
   const handleAddTransaction = (newTransaction) => {
     const newValue = Number(newTransaction.amount);
 
     setTransactions((prevTransactions) => [...prevTransactions, newTransaction]);
 
+    // Update the current balance and total amounts based on the new transaction type
     if (newTransaction.type === 'expense') {
       setCurrentBalance((prevBalance) => prevBalance - newValue);
       setTotalExpenses((prevExpenses) => prevExpenses + newValue);
@@ -29,7 +31,6 @@ function App() {
       <div className="main-content">
         <section className="statistics-section">
           <StatisticsPage
-            amount={amount}
             currentBalance={currentBalance}
             totalExpenses={totalExpenses}
             totalIncome={totalIncome}
@@ -37,14 +38,10 @@ function App() {
         </section>
         <section className="form-section">
           <TransactionForm
-            onAmountChange={setAmount}
             onAddTransaction={handleAddTransaction}
-            currentBalance={currentBalance}
-            totalExpenses={totalExpenses}
-            totalIncome={totalIncome}
           />
         </section>
-          <TransactionList transactions={transactions} />
+        <TransactionList transactions={transactions} />
       </div>
       <Footer />
     </>
