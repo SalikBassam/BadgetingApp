@@ -3,23 +3,26 @@ import React, { useState } from 'react';
 import '../../Assets/App.css';
 import './TransactionForm.css';
 
-function TransactionForm({ onAmountChange, onAddTransaction }) {
+function TransactionForm({onAddTransaction }) {
+  // State variables to track transaction form inputs
   const [transactionAmount, setTransactionAmount] = useState(0);
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('expense');
 
+  // Event handler for amount input change
   const handleAmountChange = (e) => {
     const value = e.target.value;
     setTransactionAmount(value);
-    onAmountChange(value, type); // Pass the amount value and type to the parent component
   };
 
+  // Event handler for type selection change
   const handleTypeChange = (e) => {
     const selectedType = e.target.value;
     setType(selectedType);
   };
 
+  // Event handler for adding a new transaction
   const handleAddTransaction = () => {
     const newTransaction = {
       amount: transactionAmount,
